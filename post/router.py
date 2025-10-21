@@ -1,9 +1,12 @@
 from fastapi import APIRouter,Depends
 from . import services,schemas
-from MINIBLOG-BACKEND.connection import get_db
+from core.db import get_db
 from sqlalchemy.orm import Session
 
-router = APIRouter()
+
+router = APIRouter(prefix="/post", tags=["Post"])
+
+
 
 @router.post("/posts", response_model=schemas.PostCreate)
 def create_post(data:schemas.PostCreate,db:Session=Depends(get_db)):

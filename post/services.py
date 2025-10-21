@@ -1,5 +1,5 @@
 from . import models, schemas
-from MINIBLOG-BACKEND.connection import get_db
+from core.db import get_db
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
