@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class PostCreate(BaseModel):
     title: str
     content: str
-    tags:str
+    tags:str | None = None
     
 class PostUpdate(PostCreate):
     pass    
@@ -16,4 +16,4 @@ class PostOut(PostCreate):
     
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -4,7 +4,7 @@ from core.db import get_db
 from sqlalchemy.orm import Session
 
 
-router = APIRouter(prefix="/post", tags=["Post"])
+router = APIRouter( tags=["Post"])
 
 
 
@@ -16,15 +16,15 @@ def create_post(data:schemas.PostCreate,db:Session=Depends(get_db)):
 def get_posts(db:Session=Depends(get_db)):
     return services.get_posts(db=db)
 
-@router.get("posts/{post_id}", response_model=schemas.PostCreate)
+@router.get("/posts/{post_id}", response_model=schemas.PostCreate)
 def get_post_by_id(post_id:int, db:Session=Depends(get_db)):   
     return services.get_post_by_id(post_id=post_id, db=db)
 
-@router.put("posts/{post_id}", response_model=schemas.PostCreate)
+@router.put("/posts/{post_id}", response_model=schemas.PostCreate)
 def update_post(post_id:int, data:schemas.PostUpdate, db:Session=Depends(get_db)):
     return services.update_post(post_id=post_id, data=data, db=db)
 
-@router.delete("posts/{post_id}", response_model=dict)
+@router.delete("/posts/{post_id}", response_model=dict)
 def delete_post(post_id:int, db:Session=Depends(get_db)):
     return services.delete_post(post_id=post_id, db=db)
 
