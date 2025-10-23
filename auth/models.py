@@ -11,6 +11,3 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password_hash = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
-    bio = Column(String, nullable=True)
-    avatar= Column(String, nullable=True)
-    social_links = Column(String, nullable=True)

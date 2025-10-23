@@ -1,11 +1,12 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class PostCreate(BaseModel):
     title: str
     content: str
     tags:str | None = None
-    created_at: str 
-    updated_at: str
+    created_at: datetime
+    updated_at: datetime
     author_id: int 
 
     
