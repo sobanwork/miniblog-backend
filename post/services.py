@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 
 def create_post(data:schemas.PostCreate, db:Session=Depends(get_db)):
-    instance = models.Post(title=data.title, content=data.content, tags=data.tags)
+    instance = models.Post(title=data.title, content=data.content, tags=data.tags, created_at=data.created_at, updated_at=data.updated_at, author_id=data.author_id)
     db.add(instance)
     db.commit()
     db.refresh(instance)
@@ -31,6 +31,9 @@ def update_post(post_id:int, data:schemas.PostUpdate, db:Session=Depends(get_db)
     post.title = data.title
     post.content = data.content
     post.tags = data.tags
+    post.created_at = data.created_at
+    post.updated_at = data.updated_at
+    post.author_id = data.author_id
     db.commit()
     db.refresh(post)
     return post

@@ -4,6 +4,10 @@ class PostCreate(BaseModel):
     title: str
     content: str
     tags:str | None = None
+    created_at: str 
+    updated_at: str
+    author_id: int 
+
     
 class PostUpdate(PostCreate):
     pass    

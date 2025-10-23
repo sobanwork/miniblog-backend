@@ -8,7 +8,7 @@ router = APIRouter( tags=["Post"])
 
 
 
-@router.post("/posts", response_model=schemas.PostCreate)
+@router.post("/posts", response_model=schemas.PostOut)
 def create_post(data:schemas.PostCreate,db:Session=Depends(get_db)):
     return services.create_post(data=data, db=db )
 
@@ -16,11 +16,11 @@ def create_post(data:schemas.PostCreate,db:Session=Depends(get_db)):
 def get_posts(db:Session=Depends(get_db)):
     return services.get_posts(db=db)
 
-@router.get("/posts/{post_id}", response_model=schemas.PostCreate)
+@router.get("/posts/{post_id}", response_model=schemas.PostOut)
 def get_post_by_id(post_id:int, db:Session=Depends(get_db)):   
     return services.get_post_by_id(post_id=post_id, db=db)
 
-@router.put("/posts/{post_id}", response_model=schemas.PostCreate)
+@router.put("/posts/{post_id}", response_model=schemas.PostOut)
 def update_post(post_id:int, data:schemas.PostUpdate, db:Session=Depends(get_db)):
     return services.update_post(post_id=post_id, data=data, db=db)
 

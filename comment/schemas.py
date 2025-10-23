@@ -5,9 +5,8 @@ class CommentCreate(BaseModel):
     user_id: int
     content: str
 
-class CommentOut(BaseModel):
+class CommentOut(CommentCreate):
     id:int
-    content:str
 
     class Config:
         from_attributes = True

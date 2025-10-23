@@ -6,6 +6,6 @@ from sqlalchemy.orm import Session
 
 router =APIRouter(tags=["Likes"])
 
-@router.post("/posts/{id}/like", response_model=schemas.CommentLike)
+@router.post("/posts/{id}/like", response_model=schemas.CommentLikeOut)
 def create_like(id:int, data:schemas.CommentLike, db:Session=Depends(get_db)):
     return services.create_like(id=id, data=data, db=db)

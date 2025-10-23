@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(tags=["Comment"])
 
-@router.post("/posts/{id}/comment", response_model=schemas.CommentCreate)
+@router.post("/posts/{id}/comment", response_model=schemas.CommentOut)
 def create_comment(id:int, data:schemas.CommentCreate, db:Session=Depends(get_db)):
     return services.create_comment(id=id, data=data, db=db)
 
