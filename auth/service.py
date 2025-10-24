@@ -13,7 +13,7 @@ from auth.schemas import UserCreate, UserLogin
 # SIGNUP & LOGIN
 # ===============================
 
-def create_user(db: Session, payload: UserCreate):
+def create_user( payload: UserCreate,db: Session=Depends(get_db)):
     if db.query(User).filter(User.email == payload.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
     user = User(
@@ -26,7 +26,7 @@ def create_user(db: Session, payload: UserCreate):
     db.refresh(user)
     return user
 
-def authenticate_user(db: Session, payload: UserLogin):
+def authenticate_user(payload: UserLogin, db: Session=Depends(get_db)):
     user = db.query(User).filter(User.email == payload.email).first()
     if not user or not verify_password(payload.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid credentials")

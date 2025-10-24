@@ -8,7 +8,7 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 
 @router.post("/signup", response_model=schemas.Token)
 def signup(payload: schemas.UserCreate, db: Session = Depends(get_db)):
-    user = service.create_user(db, payload)
+    user = service.create_user(payload,db)
     token = service.create_access_token({"sub": str(user.id)})
     return {"access_token": token, "token_type": "bearer"}
 
